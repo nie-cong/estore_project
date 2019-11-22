@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.briup.dao.mapperInterface.SUserMapper" >
+  <resultMap id="SUserResultMap" type="com.briup.bean.SUser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="zip" property="zip" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="dob" property="dob" />
+  </resultMap>
+ 
+  <!-- 插入用户数据 -->
+  <insert id="insertUser" parameterType="SUser">
+  	INSERT INTO S_USER(ID,USERNAME,PASSWORD,ZIP,ADDRESS,PHONE,EMAIL,DOB)
+  	VALUES(#{id},#{username},#{password},#{zip},#{address},#{phone},#{email},#{dob})
+  </insert>
+   <!-- 通过name查用户 -->
+  <select id="selectUserByName" parameterType="String" resultType="SUser" >
+  	SELECT * 
+  	FROM S_USER
+  	WHERE USERNAME=(#{username})
+  </select>
+   <!-- 查询所有用户姓名 -->
+  <select id="selectAllUsernameAndPassword" resultType="map">
+  	SELECT USERNAME, PASSWORD
+  	FROM S_USER
+  </select>
+  
+   <!-- 通过name查用密码 -->
+  <select id="selectPasswordByName" parameterType="String" resultType="String" >
+  	SELECT PASSWORD 
+  	FROM S_USER
+  	WHERE USERNAME=(#{username})
+  </select>
+</mapper>

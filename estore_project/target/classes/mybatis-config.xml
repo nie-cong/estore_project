@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+<configuration>
+	<!--properties配置参数--> 
+	<!--如果key相同,config.properties的优先级最高(较后执行)-->
+	<properties resource="config.properties">
+	</properties>
+  <!-- 类型别名 -->
+  <typeAliases> 
+	<package name="com.briup.bean"/>
+  </typeAliases>
+  
+  <!-- 数据库开发环境 -->
+  <environments default="MysqlDevelop"> 
+	<environment id="MysqlDevelop">
+			<transactionManager type="JDBC"></transactionManager>
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" /> 
+				<property name="url" value="jdbc:mysql://localhost:3306/bookstore?
+				useUnicode=true;characterEncoding=utf8;autoReconnect=true;rewriteBatchedStatements=TRUE;useSSL=false
+				"/> 
+				<property name="username" value="root" />
+				<property name="password" value="briup" />
+			</dataSource>
+		</environment>
+		
+	<environment id="mysql"> 
+	   <transactionManager type="JDBC"/> 
+	   <dataSource type="POOLED">
+		<property name="mysqlDriver" value="${mysqlDriver}" /> 
+		<property name="mysqlUrl" value="${mysqlUrl}" /> 
+		<property name="mysqlUsername" value="${mysqlUsername}" /> 
+		<property name="mysqlPassword" value="${mysqlPassword}" /> 
+		
+	  </dataSource> 
+	</environment> 
+  </environments> 
+  <mappers> 
+  	
+  	<mapper resource="com/briup/dao/mapperInterface/mappers/SUserMapper.xml"/>
+  	<mapper resource="com/briup/dao/mapperInterface/mappers/SCateMapper.xml"/>
+  	<mapper resource="com/briup/dao/mapperInterface/mappers/SCateDetailMapper.xml"/>
+  	<mapper resource="com/briup/dao/mapperInterface/mappers/SProductMapper.xml"/>
+  </mappers> 
+  
+</configuration> 

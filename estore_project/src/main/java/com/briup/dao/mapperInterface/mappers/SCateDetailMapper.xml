@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.briup.dao.mapperInterface.SCateDetailMapper" >
+ <resultMap id="CateDetailResultMap" type="com.briup.bean.SCateDetail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+  </resultMap>
+ <select id="selectAllCateDetail" resultMap="CateDetailResultMap">
+ 		SELECT *FROM S_CATE_DETAIL
+ </select>
+ <select id="selectScateIdBYid" parameterType="int" resultType="int">
+ 		SELECT CATEGORY_ID FROM S_CATE_DETAIL WHERE ID=${id}
+ </select>
+</mapper>
